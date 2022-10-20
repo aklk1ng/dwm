@@ -146,7 +146,7 @@ static Key keys[] = {
     TAGKEYS(XK_m, 10, "st", "st")
     TAGKEYS(XK_0, 11, "icalingua", "icalingua")
     TAGKEYS(XK_w, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
-    TAGKEYS(XK_l, 13, "/opt/apps/com.qq.weixin.work.deepin/files/run.sh", "/opt/apps/com.qq.weixin.work.deepin/files/run.sh")
+    TAGKEYS(XK_l, 13, "/usr/bin/wemeet", "/usr/bin/wemeet")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
