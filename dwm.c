@@ -274,6 +274,7 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 
+/* static void sigstatusbar(const Arg *arg); */
 static void selectlayout(const Arg *arg);
 static void setlayout(const Arg *arg);
 
@@ -2386,6 +2387,20 @@ sigchld(int unused)
         die("can't install SIGCHLD handler:");
     while (0 < waitpid(-1, NULL, WNOHANG));
 }
+
+/* void */
+/* sigstatusbar(const Arg *arg) */
+/* { */
+/* 	union sigval sv; */
+
+/* 	if (!statussig) */
+/* 		return; */
+/* 	sv.sival_int = arg->i; */
+/* 	if ((statuspid = getstatusbarpid()) <= 0) */
+/* 		return; */
+
+/* 	sigqueue(statuspid, SIGRTMIN+statussig, sv); */
+/* } */
 
 void
 spawn(const Arg *arg)
