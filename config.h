@@ -122,7 +122,8 @@ static Key keys[] = {
     { 0,                   XK_F9,                  spawn,            {.v = (const char*[]){ "mpc", "stop", NULL }} },   /*停止播放*/
     { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /* super enter      | 打开st终端             */
     { MODKEY,              XK_minus,  spawn, SHCMD("floatst") },                                                /* super +          | 打开浮动st终端         */
-    { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme nord -show drun -show-icons") },                                         /* super d          | rofi: 执行命令         */
+    { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme nord -show drun -show-icons") },                /* super d          | rofi: 执行命令         */
+    { MODKEY,              XK_p,      spawn, SHCMD("rofi -show menu -modi 'menu:~/scripts/rofi.sh'") },        /* super p          | rofi: 执行命令         */
     { MODKEY,              XK_F1,     spawn, SHCMD("pcmanfm") },                                                /* super F1         | 文件管理器             */
     { MODKEY,              XK_k,      spawn, SHCMD("~/scripts/bluelock.sh") },                                  /* super k          | 锁定屏幕               */
     { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui -c -p ~/Pictures/screenshots") },             /* super shift a    | 截图                   */
