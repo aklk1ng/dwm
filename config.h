@@ -110,7 +110,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right  |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
-    { 0,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ") },   /*禁音*/
+    { 0,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
     { 0,                   XK_F12,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ") },   /*增大音量*/
     { 0,                   XK_F11,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ") },   /*减小音量*/
     { 0,                   XK_F2,                  spawn,            {.v = (const char*[]){ "xbacklight", "-inc", "1", NULL }} },   /*增大背光*/
