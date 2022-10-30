@@ -95,8 +95,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space |  切换到网格布局 */
 	{ MODKEY,              XK_o,            showonlyorall,    {0} },                     /* super o           |  切换 只显示一个窗口 / 全部显示 */
 
-    { MODKEY|ControlMask,  XK_equal,        setgap,           {.i = -6} },               /* super ctrl up      |  窗口增大 */
-    { MODKEY|ControlMask,  XK_minus,        setgap,           {.i = +6} },               /* super ctrl down    |  窗口减小 */
+    { MODKEY|ControlMask,  XK_equal,        setgap,           {.i = -1} },               /* super ctrl up      |  窗口增大 */
+    { MODKEY|ControlMask,  XK_minus,        setgap,           {.i = +1} },               /* super ctrl down    |  窗口减小 */
     { MODKEY|ControlMask,  XK_space,        setgap,           {.i = 0} },                /* super ctrl space   |  窗口重置 */
 
     { MODKEY|ControlMask,  XK_Up,           movewin,          {.ui = UP} },              /* super ctrl up      |  移动窗口 */
@@ -104,10 +104,10 @@ static Key keys[] = {
     { MODKEY|ControlMask,  XK_Left,         movewin,          {.ui = LEFT} },            /* super ctrl left    |  移动窗口 */
     { MODKEY|ControlMask,  XK_Right,        movewin,          {.ui = RIGHT} },           /* super ctrl right   |  移动窗口 */
 
-    { MODKEY|Mod4Mask,     XK_Up,           resizewin,        {.ui = V_REDUCE} },        /* super ctrl up     |  调整窗口 */
-    { MODKEY|Mod4Mask,     XK_Down,         resizewin,        {.ui = V_EXPAND} },        /* super ctrl down   |  调整窗口 */
-    { MODKEY|Mod4Mask,     XK_Left,         resizewin,        {.ui = H_REDUCE} },        /* super ctrl left   |  调整窗口 */
-    { MODKEY|Mod4Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right  |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Up,           resizewin,        {.ui = V_REDUCE} },        /* super win up     |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Down,         resizewin,        {.ui = V_EXPAND} },        /* super win down   |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Left,         resizewin,        {.ui = H_REDUCE} },        /* super win left   |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super win right  |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
     { 0,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
