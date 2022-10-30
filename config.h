@@ -25,7 +25,7 @@ static const unsigned int alphas[][3]    = { [SchemeNorm] = { OPAQUE, baralpha, 
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸ 
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "", "﬏" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   noborder  monitor */
     {"music",                NULL,                 NULL,             1 << 10,      1,           1,        -1 },
@@ -148,6 +148,7 @@ static Key keys[] = {
     TAGKEYS(XK_0, 11, "/opt/apps/com.qq.im.deepin/files/run.sh", "/opt/apps/com.qq.im.deepin/files/run.sh")
     TAGKEYS(XK_w, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
     TAGKEYS(XK_l, 13, "/usr/bin/wemeet", "/usr/bin/wemeet")
+    TAGKEYS(XK_v, 14, "/opt/visual-studio-code/bin/code", "/opt/visual-studio-code/bin/code")
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
