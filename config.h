@@ -104,10 +104,10 @@ static Key keys[] = {
     { MODKEY|ControlMask,  XK_Left,         movewin,          {.ui = LEFT} },            /* super ctrl left    |  移动窗口 */
     { MODKEY|ControlMask,  XK_Right,        movewin,          {.ui = RIGHT} },           /* super ctrl right   |  移动窗口 */
 
-    { MODKEY|ShiftMask,     XK_Up,           resizewin,        {.ui = V_REDUCE} },        /* super ctrl up     |  调整窗口 */
-    { MODKEY|ShiftMask,     XK_Down,         resizewin,        {.ui = V_EXPAND} },        /* super ctrl down   |  调整窗口 */
-    { MODKEY|ShiftMask,     XK_Left,         resizewin,        {.ui = H_REDUCE} },        /* super ctrl left   |  调整窗口 */
-    { MODKEY|ShiftMask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right  |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Up,           resizewin,        {.ui = V_REDUCE} },        /* super ctrl up     |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Down,         resizewin,        {.ui = V_EXPAND} },        /* super ctrl down   |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Left,         resizewin,        {.ui = H_REDUCE} },        /* super ctrl left   |  调整窗口 */
+    { MODKEY|Mod4Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super ctrl right  |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
     { 0,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
