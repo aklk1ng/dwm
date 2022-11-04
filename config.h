@@ -110,16 +110,16 @@ static Key keys[] = {
     { MODKEY|Mod4Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super win right  |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
-    { 0,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
-    { 0,                   XK_F12,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ") },   /*增大音量*/
-    { 0,                   XK_F11,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ") },   /*减小音量*/
-    { 0,                   XK_F2,                  spawn,            {.v = (const char*[]){ "xbacklight", "-inc", "1", NULL }} },   /*增大背光*/
-    { 0,                   XK_F3,                  spawn,            {.v = (const char*[]){ "xbacklight", "-dec", "1", NULL }} },   /*减小背光*/
-    { 0,                   XK_F5,                  spawn,            {.v = (const char*[]){ "mpc", "prev", NULL }} },   /*切换到上一首歌*/
-    { 0,                   XK_F6,                  spawn,            {.v = (const char*[]){ "mpc", "next", NULL }} },   /*切换到下一首歌*/
-    { 0,                   XK_F7,                  spawn,            {.v = (const char*[]){ "mpc", "pause", NULL }} },   /*暂停播放*/
-    { 0,                   XK_F8,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续播放*/ 
-    { 0,                   XK_F9,                  spawn,            {.v = (const char*[]){ "mpc", "stop", NULL }} },   /*停止播放*/
+    { MODKEY,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
+    { MODKEY,                   XK_F12,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ") },   /*增大音量*/
+    { MODKEY,                   XK_F11,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ") },   /*减小音量*/
+    { MODKEY,                   XK_F2,                  spawn,            {.v = (const char*[]){ "xbacklight", "-inc", "1", NULL }} },   /*增大背光*/
+    { MODKEY,                   XK_F3,                  spawn,            {.v = (const char*[]){ "xbacklight", "-dec", "1", NULL }} },   /*减小背光*/
+    { MODKEY,                   XK_F5,                  spawn,            {.v = (const char*[]){ "mpc", "prev", NULL }} },   /*切换到上一首歌*/
+    { MODKEY,                   XK_F6,                  spawn,            {.v = (const char*[]){ "mpc", "next", NULL }} },   /*切换到下一首歌*/
+    { MODKEY,                   XK_F7,                  spawn,            {.v = (const char*[]){ "mpc", "pause", NULL }} },   /*暂停播放*/
+    { MODKEY,                   XK_F8,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续播放*/ 
+    { MODKEY,                   XK_F9,                  spawn,            {.v = (const char*[]){ "mpc", "stop", NULL }} },   /*停止播放*/
     { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /* super enter      | 打开st终端             */
     { MODKEY,              XK_minus,  spawn, SHCMD("floatst") },                                                /* super +          | 打开浮动st终端         */
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme nord -show drun -show-icons") },                /* super d          | rofi: 执行命令         */
