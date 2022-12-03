@@ -177,7 +177,7 @@ struct Systray {
 
 /* function declarations */
 static void logtofile(const char *format, ...);
-
+/* static void logtofile(char log[100]); */
 static void tile(Monitor *m);
 static void magicgrid(Monitor *m);
 static void overview(Monitor *m);
@@ -398,7 +398,6 @@ logtofile(const char *format, ...)
     sprintf(cmd, "echo '%s' >> ~/log", log);
     system(cmd);
 }
-
 void
 applyrules(Client *c)
 {
