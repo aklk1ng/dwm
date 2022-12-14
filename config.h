@@ -31,7 +31,6 @@ static const Rule rules[] = {
     {"music",                NULL,                 NULL,             1 << 10,      1,           1,        -1 },
     { NULL,                 "tim.exe",             NULL,             1 << 11,      0,           0,        -1 },
     { NULL,                 "wechat.exe",          NULL,             1 << 12,      0,           0,        -1 },
-    { NULL,                 "wxwork.exe",          NULL,             1 << 13,      0,           0,        -1 },
     { NULL,                  NULL,                "broken",          0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,           0,        -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,        -1 },
