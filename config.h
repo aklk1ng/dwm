@@ -144,7 +144,7 @@ static Key keys[] = {
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
     TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
-    TAGKEYS(XK_m, 10, "st", "st")
+    TAGKEYS(XK_m, 10, "kitty", "kitty")
     TAGKEYS(XK_0, 11, "/opt/apps/com.qq.im.deepin/files/run.sh", "/opt/apps/com.qq.im.deepin/files/run.sh")
     TAGKEYS(XK_w, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
     TAGKEYS(XK_l, 13, "/usr/bin/wemeet", "/usr/bin/wemeet")
