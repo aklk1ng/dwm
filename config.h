@@ -36,7 +36,6 @@ static const Rule rules[] = {
     {"chrome",               NULL,                 NULL,             1 << 9,       0,           0,        -1 },
     {"flameshot",            NULL,                 NULL,             0,            1,           0,        -1 },
     {"float",                NULL,                 NULL,             0,            1,           0,        -1 },
-    {"noborder",             NULL,                 NULL,             0,            1,           1,        -1 },
 };
 static const char *overviewtag = "OVERVIEW";
 static const Layout overviewlayout = { "",  overview };
