@@ -112,8 +112,7 @@ static Key keys[] = {
     { MODKEY,                   XK_F3,                  spawn,            {.v = (const char*[]){ "xbacklight", "-dec", "1", NULL }} },   /*减小背光*/
     { MODKEY,                   XK_F5,                  spawn,            {.v = (const char*[]){ "mpc", "prev", NULL }} },   /*切换到上一首歌*/
     { MODKEY,                   XK_F6,                  spawn,            {.v = (const char*[]){ "mpc", "next", NULL }} },   /*切换到下一首歌*/
-    { MODKEY,                   XK_F7,                  spawn,            {.v = (const char*[]){ "mpc", "pause", NULL }} },   /*暂停播放*/
-    { MODKEY,                   XK_F8,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续播放*/ 
+    { MODKEY,                   XK_F8,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续/暂停播放*/ 
     { MODKEY,                   XK_F9,                  spawn,            {.v = (const char*[]){ "mpc", "stop", NULL }} },   /*停止播放*/
     /* { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /1* super enter      | 打开st终端             *1/ */
     /* { MODKEY,              XK_Return, spawn, SHCMD("alacritty") },                                                     /1* super enter      | 打开alacritty终端             *1/ */
