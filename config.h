@@ -117,7 +117,7 @@ static Key keys[] = {
     /* { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /1* super enter      | 打开st终端             *1/ */
     /* { MODKEY,              XK_Return, spawn, SHCMD("alacritty") },                                                     /1* super enter      | 打开alacritty终端             *1/ */
     { MODKEY,              XK_Return, spawn, SHCMD("kitty") },                                                     /* super enter      | 打开kitty终端             */
-    { MODKEY,              XK_s,  spawn, SHCMD("floatst") },                                                /* super s          | 打开浮动st终端         */
+    { MODKEY,              XK_s,  spawn, SHCMD("st -c float") },                                                /* super s          | 打开浮动st终端         */
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme nord -show drun -show-icons") },                /* super d          | rofi: 执行命令         */
     { MODKEY,              XK_p,      spawn, SHCMD("rofi -show menu -modi 'menu:~/scripts/rofi.sh'") },        /* super p          | rofi: 执行命令         */
     { MODKEY,              XK_F1,     spawn, SHCMD("pcmanfm") },                                                /* super F1         | 文件管理器             */
