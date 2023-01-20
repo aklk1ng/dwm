@@ -29,11 +29,15 @@ static const char *colors[][3]           = {
     [SchemeHid] = { "#dddddd", NULL, NULL },
     [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" },
     [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" },
+    [SchemeNormTag] = { "#bbbbbb", "#333333", NULL },
+    [SchemeSelTag] = { "#eeeeee", "#333333", NULL },
 };
 static const unsigned int alphas[][3]    = {
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
     [SchemeSel] = { OPAQUE, baralpha, borderalpha },
     [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
+    [SchemeNormTag] = { OPAQUE, baralpha, borderalpha }, 
+    [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
 };
 
 /* 自定义tag名称 */
