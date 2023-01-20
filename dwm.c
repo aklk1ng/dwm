@@ -77,7 +77,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeSelGlobal, SchemeHid, SchemeSystray, SchemeNormTag, SchemeSelTag, SchemeUnderline }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeSelGlobal, SchemeHid, SchemeSystray, SchemeNormTag, SchemeSelTag, SchemeUnderline, SchemeBarEmpty, SchemeStatusText }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
@@ -975,7 +975,6 @@ drawbar(Monitor *m)
     // 代表为overview tag状态
     if (m->isoverview) {
         w = TEXTW(overviewtag);
-        /* drw_setscheme(drw, scheme[SchemeSel]); */
         drw_setscheme(drw, scheme[SchemeSelTag]);
         drw_text(drw, x, 0, w, bh, lrpad / 2, overviewtag, 0);
         drw_setscheme(drw, scheme[SchemeUnderline]);
@@ -1034,7 +1033,8 @@ drawbar(Monitor *m)
     }
     empty_w = m->ww - x - status_w - system_w - 2 * sp - (system_w ? systrayspadding : 0); // 最后多加了一个w
     if (empty_w > 0) {
-        drw_setscheme(drw, scheme[SchemeHid]);
+        /* drw_setscheme(drw, scheme[SchemeHid]); */
+        drw_setscheme(drw, scheme[SchemeBarEmpty]);
         drw_rect(drw, x, 0, empty_w, bh, 1, 1);
     }
 
@@ -1122,13 +1122,15 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
                     char buf[8];
                     memcpy(buf, (char*)text+i+1, 7);
                     buf[7] = '\0';
-                    drw_clr_create(drw, &drw->scheme[ColFg], buf, 0xee);
+                    /* drw_clr_create(drw, &drw->scheme[ColFg], buf, 0xee); */
+                    drw_clr_create(drw, &drw->scheme[ColFg], buf, alphas[SchemeStatusText][ColFg]);
                     i += 7;
                 } else if (text[i] == 'b') {
                     char buf[8];
                     memcpy(buf, (char*)text+i+1, 7);
                     buf[7] = '\0';
-                    drw_clr_create(drw, &drw->scheme[ColBg], buf, 0x88);
+                    /* drw_clr_create(drw, &drw->scheme[ColBg], buf, 0x88); */
+                    drw_clr_create(drw, &drw->scheme[ColBg], buf, alphas[SchemeStatusText][ColBg]);
                     i += 7;
                 } else if (text[i] == 'd') {
                     drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];

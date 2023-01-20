@@ -31,6 +31,7 @@ static const char *colors[][3]           = {
     [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" },
     [SchemeNormTag] = { "#bbbbbb", "#333333", NULL },
     [SchemeSelTag] = { "#eeeeee", "#333333", NULL },
+    [SchemeBarEmpty] = { NULL, "#111111", NULL },
 };
 static const unsigned int alphas[][3]    = {
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
@@ -38,6 +39,8 @@ static const unsigned int alphas[][3]    = {
     [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
     [SchemeNormTag] = { OPAQUE, baralpha, borderalpha }, 
     [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
+    [SchemeBarEmpty] = { NULL, 0xa0a, NULL },
+    [SchemeStatusText] = { OPAQUE, 0x88, NULL },
 };
 
 /* 自定义tag名称 */
@@ -103,7 +106,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,    XK_b,            tagmon,           {.i = +1} },               /* super shift b      |  将聚焦窗口移动到另一个显示器 */
 
     { MODKEY,              XK_q,            killclient,       {0} },                     /* super q            |  关闭窗口 */
-    { MODKEY|ShiftMask,    XK_q,            quit,             {0} },                     /* super shift q      |  退出dwm */
+    { MODKEY|ShiftMask,    XK_F12,            quit,             {0} },                     /* super shift q      |  退出dwm */
 
 	{ MODKEY,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space |  切换到网格布局 */
 	{ MODKEY,              XK_o,            showonlyorall,    {0} },                     /* super o           |  切换 只显示一个窗口 / 全部显示 */
@@ -123,15 +126,15 @@ static Key keys[] = {
     { MODKEY|Mod4Mask,     XK_Right,        resizewin,        {.ui = H_EXPAND} },        /* super win right  |  调整窗口 */
 
     /* spawn + SHCMD 执行对应命令(已下部分建议完全自己重新定义) */
-    { MODKEY,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
-    { MODKEY,                   XK_F12,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ") },   /*增大音量*/
-    { MODKEY,                   XK_F11,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ") },   /*减小音量*/
     { MODKEY,                   XK_F2,                  spawn,            {.v = (const char*[]){ "xbacklight", "-inc", "1", NULL }} },   /*增大背光*/
     { MODKEY,                   XK_F3,                  spawn,            {.v = (const char*[]){ "xbacklight", "-dec", "1", NULL }} },   /*减小背光*/
     { MODKEY,                   XK_F5,                  spawn,            {.v = (const char*[]){ "mpc", "prev", NULL }} },   /*切换到上一首歌*/
     { MODKEY,                   XK_F6,                  spawn,            {.v = (const char*[]){ "mpc", "next", NULL }} },   /*切换到下一首歌*/
-    { MODKEY,                   XK_F8,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续/暂停播放*/ 
-    { MODKEY,                   XK_F9,                  spawn,            {.v = (const char*[]){ "mpc", "stop", NULL }} },   /*停止播放*/
+    { MODKEY,                   XK_F7,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续/暂停播放*/ 
+    { MODKEY,                   XK_F8,                  spawn,            {.v = (const char*[]){ "mpc", "stop", NULL }} },   /*停止播放*/
+    { MODKEY,                   XK_F9,                  spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
+    { MODKEY,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ") },   /*减小音量*/
+    { MODKEY,                   XK_F11,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ") },   /*增大音量*/
     /* { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /1* super enter      | 打开st终端             *1/ */
     /* { MODKEY,              XK_Return, spawn, SHCMD("alacritty") },                                                     /1* super enter      | 打开alacritty终端             *1/ */
     { MODKEY,              XK_Return, spawn, SHCMD("kitty") },                                                     /* super enter      | 打开kitty终端             */
