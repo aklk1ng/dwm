@@ -1093,7 +1093,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
     text = p;
 
     // w += 2; /* 1px padding on both sides */
-    x = m->ww - w - system_w;
+    x = m->ww - w - system_w - 2 * sp - (system_w ? systrayspadding : 0);
 
     drw_setscheme(drw, scheme[LENGTH(colors)]);
     drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
