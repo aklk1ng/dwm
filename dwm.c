@@ -77,7 +77,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeHid, SchemeSystray, SchemeUnderline, SchemeBarEmpty, SchemeStatusText }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeSelGlobal, SchemeHid, SchemeSystray, SchemeUnderline }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
@@ -335,6 +335,8 @@ static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
 static int lrpad;            /* sum of left and right padding for text */
+static int vp;               /* vertical padding for bar*/
+static int sp;               /* side padding for bar*/
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
@@ -958,7 +960,7 @@ drawbar(Monitor *m)
     // 绘制STATUSBAR
     status_w = drawstatusbar(m, bh, stext);
 
-    // 未知
+    // 判断tag显示数量
     for (c = m->clients; c; c = c->next) {
         if (ISVISIBLE(c))
             n++;
@@ -1028,10 +1030,9 @@ drawbar(Monitor *m)
             tasks_w += w;
         }
     }
-    empty_w = m->ww - x - status_w - system_w; // 最后多加了一个w
+    empty_w = m->ww - x - status_w - system_w - 2 * sp - (system_w ? systrayspadding : 0); // 最后多加了一个w
     if (empty_w > 0) {
-        /* drw_setscheme(drw, scheme[SchemeHid]); */
-        drw_setscheme(drw, scheme[SchemeBarEmpty]);
+        drw_setscheme(drw, scheme[SchemeHid]);
         drw_rect(drw, x, 0, empty_w, bh, 1, 1);
     }
 
@@ -1119,15 +1120,13 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
                     char buf[8];
                     memcpy(buf, (char*)text+i+1, 7);
                     buf[7] = '\0';
-                    /* drw_clr_create(drw, &drw->scheme[ColFg], buf, 0xee); */
-                    drw_clr_create(drw, &drw->scheme[ColFg], buf, alphas[SchemeStatusText][ColFg]);
+                    drw_clr_create(drw, &drw->scheme[ColFg], buf, 0xee);
                     i += 7;
                 } else if (text[i] == 'b') {
                     char buf[8];
                     memcpy(buf, (char*)text+i+1, 7);
                     buf[7] = '\0';
-                    /* drw_clr_create(drw, &drw->scheme[ColBg], buf, 0x88); */
-                    drw_clr_create(drw, &drw->scheme[ColBg], buf, alphas[SchemeStatusText][ColBg]);
+                    drw_clr_create(drw, &drw->scheme[ColBg], buf, 0x88);
                     i += 7;
                 } else if (text[i] == 'd') {
                     drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
@@ -1356,7 +1355,7 @@ getsystraywidth()
     Client *i;
     if(showsystray)
         for(i = systray->icons; i; w += MAX(i->w, bh) + systrayspacing, i = i->next) ;
-    return w ? w + systrayspacing : 1;
+    return w ? w + systrayspacing : 0;
 }
 
 int
@@ -1927,9 +1926,10 @@ resize(Client *c, int x, int y, int w, int h, int interact)
 void
 resizebarwin(Monitor *m) {
     unsigned int w = m->ww;
+    uint system_w = getsystraywidth();
     if (showsystray && m == systraytomon(m))
-        w -= getsystraywidth();
-    XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, w, bh);
+        w -= system_w;
+    XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, w - 2 * sp - (system_w ? systrayspadding : 0), bh);
 }
 
 void

@@ -5,6 +5,7 @@ static const int newclientathead         = 0;         /* 定义新窗口在栈�
 static const unsigned int borderpx       = 2;         /* 窗口边框大小 */
 static const unsigned int systraypinning = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
 static const unsigned int systrayspacing = 1;         /* 托盘间距 */
+static const unsigned int systrayspadding = 5;        /* 托盘和状态栏的间隙 */
 static int gappi                         = 12;        /* 窗口与窗口 缝隙大小 */
 static int gappo                         = 12;        /* 窗口与边缘 缝隙大小 */
 static const int _gappo                  = 12;        /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
@@ -22,19 +23,15 @@ static const char *fonts[]               = { "Cousine Nerd Font:style=regular:si
 static const char *colors[][3]           = {
     [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" },
     [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" },
+    [SchemeSelGlobal] = { "#ffffff", "#37474F", "#FFC0CB" },
     [SchemeHid] = { "#dddddd", NULL, NULL },
     [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" },
     [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" },
-    [SchemeBarEmpty] = { NULL, "#111111", NULL },
 };
 static const unsigned int alphas[][3]    = {
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-    [SchemeSel] = { OPAQUE, baralpha, borderalpha }
+    [SchemeSel] = { OPAQUE, baralpha, borderalpha },
     [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
-    [SchemeNormTag] = { OPAQUE, baralpha, borderalpha }, 
-    [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
-    [SchemeBarEmpty] = { NULL, 0xa0a, NULL },
-    [SchemeStatusText] = { OPAQUE, 0x88, NULL },
 };
 
 /* 自定义tag名称 */
