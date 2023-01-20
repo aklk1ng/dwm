@@ -19,8 +19,23 @@ static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
 static const char *fonts[]               = { "Cousine Nerd Font:style=regular:size=15", "monospace:size=13" };
-static const char *colors[][3]           = { [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" }, [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" }, [SchemeHid] = { "#dddddd", NULL, NULL }, [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" }, [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" } };
-static const unsigned int alphas[][3]    = { [SchemeNorm] = { OPAQUE, baralpha, borderalpha }, [SchemeSel] = { OPAQUE, baralpha, borderalpha } };
+static const char *colors[][3]           = {
+    [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" },
+    [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" },
+    [SchemeHid] = { "#dddddd", NULL, NULL },
+    [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" },
+    [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" },
+    [SchemeBarEmpty] = { NULL, "#111111", NULL },
+};
+static const unsigned int alphas[][3]    = {
+    [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+    [SchemeSel] = { OPAQUE, baralpha, borderalpha }
+    [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
+    [SchemeNormTag] = { OPAQUE, baralpha, borderalpha }, 
+    [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
+    [SchemeBarEmpty] = { NULL, 0xa0a, NULL },
+    [SchemeStatusText] = { OPAQUE, 0x88, NULL },
+};
 
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
