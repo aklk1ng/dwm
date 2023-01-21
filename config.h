@@ -39,8 +39,8 @@ static const unsigned int alphas[][3]    = {
     [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
     [SchemeNormTag] = { OPAQUE, baralpha, borderalpha }, 
     [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
-    [SchemeBarEmpty] = { NULL, 0xa0a, NULL },
-    [SchemeStatusText] = { OPAQUE, 0x88, NULL },
+    [SchemeBarEmpty] = { 0, 0xa0a, 0 },
+    [SchemeStatusText] = { OPAQUE, 0x88, 0 },
 };
 
 /* 自定义tag名称 */
