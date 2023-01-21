@@ -956,7 +956,7 @@ void
 drawbar(Monitor *m)
 {
     int x, w, empty_w;
-    int tags_w = 0, system_w = 0, tasks_w = 0, status_w, lts_w;
+    int  system_w = 0, tasks_w = 0, status_w, lts_w;
     unsigned int i, occ = 0, n = 0, urg = 0, scm;
     Client *c;
 	int boxw = 2;
