@@ -2554,6 +2554,10 @@ restorewin(const Arg *arg) {
             show(hiddenWinStack[i]);
             focus(hiddenWinStack[i]);
             restack(selmon);
+            // need set j<hiddenWinStackTop+1. Because show will reduce hiddenWinStackTop value.
+            for (int j = i; j < hiddenWinStackTop+1; ++j) {
+                hiddenWinStack[j] = hiddenWinStack[j + 1];
+            }
             return;
         }
         --i;
