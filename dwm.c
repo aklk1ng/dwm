@@ -396,21 +396,24 @@ struct Pertag {
 };
 
 /* function implementations */
-void
-logtofile(const char *format, ...)
-{
-    va_list args;
-    const char *args1;
-    va_start(args, format);
-    args1 = va_arg(args,const char *);
-    va_end(args);
 
-    char log [100];
-    char cmd [150];
-    sprintf(log, format, args1);
-    sprintf(cmd, "echo '%s' >> ~/log", log);
-    system(cmd);
-}
+// disable the useless function
+/* void */
+/* logtofile(const char *format, ...) */
+/* { */
+/*     va_list args; */
+/*     const char *args1; */
+/*     va_start(args, format); */
+/*     args1 = va_arg(args,const char *); */
+/*     va_end(args); */
+
+/*     char log [100]; */
+/*     char cmd [150]; */
+/*     sprintf(log, format, args1); */
+/*     sprintf(cmd, "echo '%s' >> ~/log", log); */
+/*     system(cmd); */
+/* } */
+
 void
 applyrules(Client *c)
 {
