@@ -37,7 +37,7 @@ static const unsigned int alphas[][3]    = {
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
     [SchemeSel] = { OPAQUE, baralpha, borderalpha },
     [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
-    [SchemeNormTag] = { OPAQUE, baralpha, borderalpha }, 
+    [SchemeNormTag] = { OPAQUE, baralpha, borderalpha },
     [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
     [SchemeBarEmpty] = { OPAQUE, 0xa0a, borderalpha },
     [SchemeStatusText] = { OPAQUE, 0x88, 0 },
@@ -106,9 +106,9 @@ static Key keys[] = {
     { MODKEY|ShiftMask,    XK_b,            tagmon,           {.i = +1} },               /* super shift b      |  将聚焦窗口移动到另一个显示器 */
 
     { MODKEY,              XK_q,            killclient,       {0} },                     /* super q            |  关闭窗口 */
-    { MODKEY|ShiftMask,    XK_F12,            quit,             {0} },                     /* super shift q      |  退出dwm */
+    { MODKEY|ShiftMask,    XK_F12,            quit,             {0} },                     /* super shift F12      |  退出dwm */
 
-	{ MODKEY,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space |  切换到网格布局 */
+	{ MODKEY,              XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space |  切换到网格布局 */
 	{ MODKEY,              XK_o,            showonlyorall,    {0} },                     /* super o           |  切换 只显示一个窗口 / 全部显示 */
 
     { MODKEY|ControlMask,  XK_equal,        setgap,           {.i = -1} },               /* super ctrl up      |  窗口增大 */
@@ -130,7 +130,7 @@ static Key keys[] = {
     { MODKEY,                   XK_F3,                  spawn,            {.v = (const char*[]){ "xbacklight", "-dec", "1", NULL }} },   /*减小背光*/
     { MODKEY,                   XK_F5,                  spawn,            {.v = (const char*[]){ "mpc", "prev", NULL }} },   /*切换到上一首歌*/
     { MODKEY,                   XK_F6,                  spawn,            {.v = (const char*[]){ "mpc", "next", NULL }} },   /*切换到下一首歌*/
-    { MODKEY,                   XK_F7,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续/暂停播放*/ 
+    { MODKEY,                   XK_F7,                  spawn,            {.v = (const char*[]){ "mpc", "toggle", NULL }} },   /*继续/暂停播放*/
     { MODKEY,                   XK_F8,                  spawn,            {.v = (const char*[]){ "mpc", "stop", NULL }} },   /*停止播放*/
     { MODKEY,                   XK_F9,                  spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
     { MODKEY,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ") },   /*减小音量*/
@@ -138,7 +138,7 @@ static Key keys[] = {
     /* { MODKEY,              XK_Return, spawn, SHCMD("st") },                                                     /1* super enter      | 打开st终端             *1/ */
     /* { MODKEY,              XK_Return, spawn, SHCMD("alacritty") },                                                     /1* super enter      | 打开alacritty终端             *1/ */
     { MODKEY,              XK_Return, spawn, SHCMD("kitty") },                                                     /* super enter      | 打开kitty终端             */
-    { MODKEY,              XK_s,  spawn, SHCMD("st -c float") },                                                /* super s          | 打开浮动st终端         */
+    { MODKEY,              XK_s,      spawn, SHCMD("st -c float") },                                                /* super s          | 打开浮动st终端         */
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme nord -show drun -show-icons") },                /* super d          | rofi: 执行命令         */
     { MODKEY,              XK_p,      spawn, SHCMD("rofi -show menu -modi 'menu:~/scripts/rofi.sh'") },        /* super p          | rofi: 执行命令         */
     { MODKEY,              XK_F1,     spawn, SHCMD("pcmanfm") },                                                /* super F1         | 文件管理器             */

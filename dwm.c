@@ -995,6 +995,7 @@ drawbar(Monitor *m)
         drw_rect(drw, x, bh - boxw, w + lrpad, boxw, 1, 0);
         x += w;
     } else {
+        // Titles
         for (i = 0; i < LENGTH(tags); i++) {
             /* do not draw vacant tags */
             if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
