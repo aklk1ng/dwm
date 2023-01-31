@@ -43,6 +43,9 @@ static const unsigned int alphas[][3]    = {
     [SchemeStatusText] = { OPAQUE, 0x88, 0 },
 };
 
+static const char *autostartscript = "~/.config/dwm/autostart.sh";
+static const char *statusbarscript = "~/.config/dwm/statusbar/statusbar.sh";
+
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "", "﬏" };
@@ -169,9 +172,9 @@ static Key keys[] = {
 };
 static Button buttons[] = {
     /* click               event mask       button            function       argument  */
-    /* { ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} }, */
-    /* { ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} }, */
-    /* { ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} }, */
+    { ClkStatusText,       0,               Button1,          clickstatusbar,  {0} },
+    { ClkStatusText,       0,               Button2,          clickstatusbar,  {0} },
+    { ClkStatusText,       0,               Button3,          clickstatusbar,  {0} },
     { ClkWinTitle,         0,               Button1,          hideotherwins, {0} },                                   // 左键        |  点击标题     |  隐藏其他窗口仅保留该窗口
     { ClkWinTitle,         0,               Button3,          togglewin,     {0} },                                   // 右键        |  点击标题     |  切换窗口显示状态
     { ClkTagBar,           0,               Button1,          view,          {0} },                                   // 左键        |  点击tag      |  切换tag
