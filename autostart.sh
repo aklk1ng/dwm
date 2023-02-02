@@ -6,6 +6,7 @@ xrandr --dpi 192
 mpd ~/.config/mpd/mpd.conf &
 feh --bg-scale ~/wallpaper/solo-leveling.png &
 fcitx5 &
+xfce4-power-manager &
 settings() {
     [ $1 ] && sleep $1
     xset s 600
@@ -21,7 +22,6 @@ daemons() {
     flameshot &
     lemonade server &
     picom --experimental-backends --config ~/scripts/config/picom.conf &
-    # xfce4-power-manager &
     # ~/scripts/app-starter.sh easyeffects &
 }
 

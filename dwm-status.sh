@@ -9,7 +9,7 @@ s2d_bg="^b"
 color00="#FF7FA8^"
 color01="#223344^"
 color02="#8A4179^"
-color03="#333344^"
+color03="#3B001B^"
 color04="#111199^"
 color05="#442266^"
 color06="#245566^"
@@ -21,9 +21,16 @@ others_color="$s2d_fg$color01$s2d_bg$color02"
   disk_color="$s2d_fg$color09$s2d_bg$color01"
    cpu_color="$s2d_fg$color00$s2d_bg$color06"
    mem_color="$s2d_fg$color05$s2d_bg$color07"
-  time_color="$s2d_fg$color00$s2d_bg$color06"
-   vol_color="$s2d_fg$color08$s2d_bg$color07"
-   bat_color="$s2d_fg$color00$s2d_bg$color06"
+  time_color="$s2d_fg$color01$s2d_bg$color06"
+   vol_color="$s2d_fg$color05$s2d_bg$color07"
+   bat_color="$s2d_fg$color03$s2d_bg$color02"
+
+bat_signal="^sbat^"
+date_signal="^sdate^"
+disk_signal="^sdisk^"
+icons_signal="^sicons^"
+vol_signal="^svol^"
+
 
 print_others() {
     icons=()
@@ -39,7 +46,7 @@ print_others() {
     if [ "$icons" ]; then
         text=" ${icons[@]} "
         color=$others_color
-        printf "%s%s%s" "$color" "$text " "$s2d_reset"
+        printf "%s%s%s" "$icons_signal" "$color" "$text "
     fi
 }
 
@@ -48,20 +55,23 @@ print_disk() {
     used_rate=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $5}' )
     text=" $disk_icon $used_rate"
     color="$disk_color"
-    printf "%s%s %s" "$color" "$text" "$s2d_reset"
+    printf "%s%s%s " "$disk_signal" "$color" "$text"
 }
 
 print_time() {
     time_text="$(date '+%m/%d %H:%M:%S')"
     text=" $time_text "
     color=$time_color
-    printf "%s%s%s" "$color" "$text" "$s2d_reset"
+    printf "%s%s%s" "$date_signal" "$color" "$text"
 }
 
 print_vol() {
     volunmuted=$(pamixer --get-mute)
     vol_text=$(pamixer --get-volume)
-    if [ "$vol_text" -eq 0 ] || [ ! "$volunmuted" ]; then vol_text="--"; vol_icon="婢";
+    if [ "$vol_text" == 0 ] || [ "$volunmuted" = "true" ]
+    then
+        vol_text="--"
+        vol_icon="婢"
     elif [ "$vol_text" -lt 10 ]; then vol_icon="奄"; vol_text=0$vol_text;
     elif [ "$vol_text" -le 20 ]; then vol_icon="奄";
     elif [ "$vol_text" -le 60 ]; then vol_icon="奔";
@@ -71,7 +81,7 @@ print_vol() {
 
     text=" $vol_icon $vol_text "
     color=$vol_color
-    printf "%s%s%s" "$color" "$text" "$s2d_reset"
+    printf "%s%s%s" "$vol_signal" "$color" "$text"
 }
 
 print_bat() {
@@ -95,7 +105,7 @@ print_bat() {
 
     text=" $bat_icon $bat_text "
     color=$bat_color
-    printf "%s%s%s" "$color" "$text" "$s2d_reset"
+    printf "%s%s%s" "$bat_signal" "$color" "$text"
 }
 
 xsetroot -name "$(print_others)$(print_disk)$(print_time)$(print_vol)$(print_bat)"

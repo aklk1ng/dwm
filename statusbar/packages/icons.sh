@@ -3,26 +3,6 @@
 
 source ~/.profile
 
-this=_icons
-color="^c#2D1B46^^b#5555660x66^"
-signal=$(echo "^s$this^" | sed 's/_//')
-
-update() {
-    icons=()
-    [ "$(sudo docker ps | grep 'arch')" ] && icons=(${icons[@]} "")
-    [ "$(bluetoothctl info C4:8D:8C:DA:E2:A7 | grep 'Connected: yes')" ] && icons=(${icons[@]} "")
-    [ "$(bluetoothctl info 8C:DE:F9:E6:E5:6B | grep 'Connected: yes')" ] && icons=(${icons[@]} "")
-    [ "$(bluetoothctl info 88:C9:E8:14:2A:72 | grep 'Connected: yes')" ] && icons=(${icons[@]} "")
-    [ "$(ps -aux | grep 'aria2c' | sed 1d)" ] && icons=(${icons[@]} "")
-    [ "$AUTOSCREEN" = "OFF" ] && icons=(${icons[@]} "ﴸ")
-
-    sed -i '/^export '$this'=.*$/d' ~/.config/dwm/statusbar/temp
-    if [ "$icons" ]; then
-        text=" ${icons[@]} "
-        printf "export %s='%s%s%s'\n" $this "$signal" "$color" "$text" >> ~/.config/dwm/statusbar/temp
-    fi
-}
-
 notify() {
     texts=""
     [ "$(bluetoothctl info C4:8D:8C:DA:E2:A7 | grep 'Connected: yes')" ] && texts="$texts\n 已链接"
@@ -41,12 +21,11 @@ call_menu() {
 click() {
     case "$1" in
         L) notify;;
-        R) call_menu ;;
+        # R) call_menu ;;
     esac
 }
 
 case "$1" in
     click) click $2 ;;
     notify) notify ;;
-    *) update ;;
 esac

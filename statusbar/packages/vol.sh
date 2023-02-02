@@ -17,31 +17,14 @@
 
 source ~/.profile
 
-this=_vol
-icon_color="^c#442266^^b#7879560x88^"
-text_color="^c#442266^^b#7879560x99^"
-signal=$(echo "^s$this^" | sed 's/_//')
-
-update() {
-    sink=$(pactl info | grep 'Default Sink' | awk '{print $3}')
+notify() {
     volunmuted=$(pamixer --get-mute)
     vol_text=$(pamixer --get-volume)
-    if [ "$vol_text" -eq 0 ] || [ ! "$volunmuted" ]; then vol_text="--"; vol_icon="婢";
-    elif [ "$vol_text" -lt 10 ]; then vol_icon="奄"; vol_text=0$vol_text;
-    elif [ "$vol_text" -le 20 ]; then vol_icon="奄";
-    elif [ "$vol_text" -le 60 ]; then vol_icon="奔";
-    else vol_icon="墳"; fi
+    if [ "$vol_text" -eq 0 ] || [ "$volunmuted" = "true" ]; then vol_text="--";
+    elif [ "$vol_text" -lt 10 ]; then vol_text=0$vol_text;
+    fi
 
-    icon=" $vol_icon "
-    text=" $vol_text% "
-
-    sed -i '/^export '$this'=.*$/d' ~/.config/dwm/statusbar/temp
-    printf "export %s='%s%s%s%s%s'\n" $this "$signal" "$icon_color" "$icon" "$text_color" "$text"  >> ~/.config/dwm/statusbar/temp
-}
-
-notify() {
-    # update
-    notify-send -r 9527 -h int:value:$vol_text -h string:hlcolor:#dddddd "$vol_icon Volume"
+    notify-send -r 9527 -h int:value:$vol_text -h string:hlcolor:#dddddd "Volume"
 }
 
 click() {
@@ -57,5 +40,4 @@ click() {
 case "$1" in
     click) click $2 ;;
     notify) notify ;;
-    *) update ;;
 esac
