@@ -126,7 +126,7 @@ struct Client {
 	int bw, oldbw;
     int taskw;
 	unsigned int tags;
-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
+	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, isglobal, isnoborder, isscratchpad;
 	Client *next;
 	Client *snext;
 	Monitor *mon;
@@ -176,7 +176,8 @@ typedef struct {
 	const char *title;
 	unsigned int tags;
 	int isfloating;
-	int noborder;
+	int isnoborder;
+    int isglobal;
 	int monitor;
 } Rule;
 
@@ -424,6 +425,8 @@ applyrules(Client *c)
 
     /* rule matching */
     c->isfloating = 0;
+    c->isglobal = 0;
+    c->isnoborder = 0;
     c->tags = 0;
     XGetClassHint(dpy, c->win, &ch);
     class    = ch.res_class ? ch.res_class : broken;
@@ -437,7 +440,9 @@ applyrules(Client *c)
         {
             c->isfloating = r->isfloating;
             c->tags |= r->tags;
-            if (r->noborder)
+            c->isglobal = r->isglobal;
+            c->isnoborder = r->isnoborder;
+            if (r->isnoborder)
                 c->bw = 0;
             for (m = mons; m && m->num != r->monitor; m = m->next);
             if (m)
@@ -592,7 +597,7 @@ buttonpress(XEvent *e)
                 i = LENGTH(tags);
         } else {
             for (c = m->clients; c; c = c->next)
-                occ |= c->tags == 255 ? 0 : c->tags;
+                occ |= c->tags == TAGMASK ? 0 : c->tags;
             do {
                 /* do not reserve space for vacant tags */
                 if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
@@ -983,7 +988,7 @@ drawbar(Monitor *m)
     for (c = m->clients; c; c = c->next) {
         if (ISVISIBLE(c))
             n++;
-        occ |= c->tags == 255 ? 0 : c->tags;
+        occ |= c->tags == TAGMASK ? 0 : c->tags;
         if (c->isurgent)
             urg |= c->tags;
     }
@@ -1318,7 +1323,7 @@ focus(Client *c)
         detachstack(c);
         attachstack(c);
         grabbuttons(c, 1);
-        XSetWindowBorder(dpy, c->win, scheme[SchemeSel][ColBorder].pixel);
+        XSetWindowBorder(dpy, c->win, scheme[c->isglobal ? SchemeSelGlobal : SchemeSel][ColBorder].pixel);
         setfocus(c);
     } else {
         XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
@@ -1358,12 +1363,17 @@ focusstack(const Arg *arg)
 {
     Client *tempClients[100];
     Client *c = NULL, *tc = selmon->sel;
-    int last = -1, cur = 0, issingle = issinglewin(NULL);
+    int last = -1, cur = 0, issingle = issinglewin(NULL), hasfloating = 0;
 
     if (!tc)
         tc = selmon->clients;
     if (!tc)
         return;
+
+        // 判断是否有浮动窗口
+    for (c = selmon->clients; c && !hasfloating; c = c->next)
+        if (ISVISIBLE(c) && !HIDDEN(c) && c->isfloating)
+            hasfloating = 1;
 
     for (c = selmon->clients; c; c = c->next) {
         if (ISVISIBLE(c) && (issingle || !HIDDEN(c))) {
@@ -2606,7 +2616,7 @@ spawn(const Arg *arg)
 void
 tag(const Arg *arg)
 {
-    if (selmon->sel && arg->ui & TAGMASK) {
+    if (selmon->sel && !selmon->sel->isglobal && arg->ui & TAGMASK) {
         selmon->sel->tags = arg->ui & TAGMASK;
         focus(NULL);
         arrange(selmon);
@@ -3241,7 +3251,7 @@ view(const Arg *arg)
     // 若当前tag无窗口 且附加了v参数 则执行
     if (arg->v) {
         for (c = selmon->clients; c; c = c->next)
-            if (c->tags & arg->ui && !HIDDEN(c))
+            if (c->tags & arg->ui && !HIDDEN(c) && !c->isglobal)
                 n++;
         if (n == 0) {
             spawn(&(Arg){ .v = (const char*[]){ "/bin/sh", "-c", arg->v, NULL } });
@@ -3253,7 +3263,7 @@ view(const Arg *arg)
 void
 toggleoverview(const Arg *arg)
 {
-    uint target = selmon->sel ? selmon->sel->tags : selmon->seltags;
+    uint target = selmon->sel && selmon->sel->tags != TAGMASK ? selmon->sel->tags : selmon->seltags;
     selmon->isoverview ^= 1;
     view(&(Arg){ .ui = target });
     pointerfocuswin(selmon->sel);
@@ -3269,6 +3279,7 @@ viewtoleft(const Arg *arg) {
         if (target == pre) return;
 
         for (c = selmon->clients; c; c = c->next) {
+            if (c->isglobal && c->tags == TAGMASK) continue;
             if (c->tags & target && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
                     && selmon->tagset[selmon->seltags] > 1) {
                 view(&(Arg) { .ui = target });
@@ -3287,6 +3298,7 @@ viewtoright(const Arg *arg) {
         if (!(target & TAGMASK)) return;
 
         for (c = selmon->clients; c; c = c->next) {
+            if (c->isglobal && c->tags == TAGMASK) continue;
             if (c->tags & target && __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) == 1
                     && selmon->tagset[selmon->seltags] & (TAGMASK >> 1)) {
                 view(&(Arg) { .ui = target });
