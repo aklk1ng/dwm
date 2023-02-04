@@ -1,7 +1,7 @@
 #! /bin/bash
 
 notify() {
-    notify-send "CPU tops" "\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n\\n(100% per core)" -r 9527
+    notify-send "CPU tops" "\n$(ps axch -o cmd:15,%cpu --sort=-%cpu | head)\\n" -r 9527
 }
 
 call_btop() {
@@ -9,7 +9,7 @@ call_btop() {
     pid2=`ps aux | grep 'st -t statusutil_cpu' | grep -v grep | awk '{print $2}'`
     mx=`xdotool getmouselocation --shell | grep X= | sed 's/X=//'`
     my=`xdotool getmouselocation --shell | grep Y= | sed 's/Y=//'`
-    kill $pid1 && kill $pid2 || st -t statusutil_cpu -g 82x25+$((mx - 328))+$((my + 20)) -c FGN -e btop
+    kill $pid1 && kill $pid2 || st -t statusutil_cpu -g 80x24+$((mx - 220))+$((my + 20)) -c FGN -e btop
 }
 
 click() {
