@@ -10,7 +10,6 @@ xfce4-power-manager &
 settings() {
     [ $1 ] && sleep $1
     xset s 600
-    xset -b
     xset r rate 300 50
     syndaemon -i 1 -t -K -R -d
     # ~/scripts/set-screen.sh &
@@ -41,7 +40,7 @@ every1000s() {
     while true
     do
         source ~/.profile
-        # xset -b
+        xset -b
         # use keyd instead of xmodmap
         # xmodmap ~/scripts/config/xmodmap.conf
         sleep 1000
