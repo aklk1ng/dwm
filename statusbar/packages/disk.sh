@@ -1,8 +1,6 @@
 #! /bin/bash
 # DISK
 
-source ~/.profile
-
 notify() {
     free_result=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $4}' )
     used_result=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $3}' )

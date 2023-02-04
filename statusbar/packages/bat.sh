@@ -1,8 +1,6 @@
 #! /bin/bash
 # 电池电量
 
-source ~/.profile
-
 notify() {
     bat_text=$(acpi -b | sed 2d | awk '{print $4}' | grep -Eo "[0-9]+")
     [ ! "$bat_text" ] && bat_text=$(acpi -b | sed 2d | awk '{print $5}' | grep -Eo "[0-9]+")

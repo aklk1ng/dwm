@@ -15,8 +15,6 @@
 # 音量 -> Volume: front-left: 13183 /  20% / -41.79 dB,   front-right: 13183 /  20% / -41.79 dB
 
 
-source ~/.profile
-
 notify() {
     volunmuted=$(pamixer --get-mute)
     vol_text=$(pamixer --get-volume)
