@@ -10,21 +10,21 @@ color00="#FF7FA8^"
 color01="#223344^"
 color02="#8A4179^"
 color03="#3B001B^"
-color04="#111199^"
+color04="#577C8A^"
 color05="#442266^"
 color06="#245566^"
 color07="#7F7256^"
-color08="#000000^"
+color08="#317561^"
 color09="#CCCCCC^"
 color10="#DC5355^"
 
-others_color="$s2d_fg$color01$s2d_bg$color02"
+others_color="$s2d_fg$color01$s2d_bg$color04"
   disk_color="$s2d_fg$color09$s2d_bg$color01"
    cpu_color="$s2d_fg$color00$s2d_bg$color06"
    high_tem="$s2d_fg$color10$s2d_bg$color07"
    mem_color="$s2d_fg$color05$s2d_bg$color07"
-  time_color="$s2d_fg$color01$s2d_bg$color06"
-   vol_color="$s2d_fg$color05$s2d_bg$color07"
+  time_color="$s2d_fg$color01$s2d_bg$color08"
+   vol_color="$s2d_fg$color05$s2d_bg$color04"
    bat_color="$s2d_fg$color03$s2d_bg$color02"
 
 bat_signal="^sbat^"
@@ -36,20 +36,16 @@ vol_signal="^svol^"
 
 
 print_others() {
-    icons=()
-    [ "$(docker ps | grep v2raya)" ] && icons=(${icons[@]} "")
-    [ "$(docker ps | grep 'arch')" ] && icons=(${icons[@]} "")
-    [ "$(bluetoothctl info C4:8D:8C:DA:E2:A7 | grep 'Connected: yes')" ] && icons=(${icons[@]} "")
-    [ "$(bluetoothctl info 8C:DE:F9:E6:E5:6B | grep 'Connected: yes')" ] && icons=(${icons[@]} "")
-    [ "$(ps -aux | grep 'danmu_sender' | sed 1d)" ] && icons=(${icons[@]} "ﳲ")
-    [ "$(ps -aux | grep 'aria2c' | sed 1d)" ] && icons=(${icons[@]} "")
-    [ "$AUTOSCREEN" = "OFF" ]  && icons=(${icons[@]} "ﴸ")
+    icons1=""
+    icons2=""
+    icons3=""
+    icons4="ﳲ"
+    icons5=""
+    icons6="ﴸ"
 
-    if [ "$icons" ]; then
-        text=" ${icons[@]} "
-        color=$others_color
-        printf "%s%s%s" "$icons_signal" "$color" "$text "
-    fi
+    text=" $icons1"
+    color=$others_color
+    printf "%s%s%s" "$icons_signal" "$color" "$text "
 }
 
 print_disk() {
@@ -82,8 +78,9 @@ print_mem() {
 }
 
 print_time() {
+    icon=""
     time_text="$(date '+%m/%d %H:%M:%S')"
-    text=" $time_text "
+    text=" $icon  $time_text "
     color=$time_color
     printf "%s%s%s" "$date_signal" "$color" "$text"
 }

@@ -19,7 +19,7 @@ call_menu() {
 
 click() {
     case "$1" in
-        L) notify;;
+        # L) notify;;
         R) call_menu ;;
     esac
 }
