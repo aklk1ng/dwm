@@ -6,7 +6,7 @@ source ~/.profile
 s2d_reset="^d^"
 s2d_fg="^c"
 s2d_bg="^b"
-color00="#FF7FA8^"
+color00="#E47361^"
 color01="#223344^"
 color02="#8A4179^"
 color03="#3B001B^"
@@ -16,16 +16,16 @@ color06="#245566^"
 color07="#7F7256^"
 color08="#317561^"
 color09="#CCCCCC^"
-color10="#DC5355^"
+color10="#C36141^"
 
 others_color="$s2d_fg$color01$s2d_bg$color04"
-  disk_color="$s2d_fg$color09$s2d_bg$color01"
-   cpu_color="$s2d_fg$color00$s2d_bg$color06"
-   high_tem="$s2d_fg$color10$s2d_bg$color07"
-   mem_color="$s2d_fg$color05$s2d_bg$color07"
-  time_color="$s2d_fg$color01$s2d_bg$color08"
-   vol_color="$s2d_fg$color05$s2d_bg$color04"
-   bat_color="$s2d_fg$color03$s2d_bg$color02"
+disk_color="$s2d_fg$color09$s2d_bg$color01"
+high_tem="$s2d_fg$color10$s2d_bg$color07"
+mem_color="$s2d_fg$color05$s2d_bg$color07"
+time_color="$s2d_fg$color01$s2d_bg$color08"
+light_color="$s2d_fg$color05$s2d_bg$color10"
+vol_color="$s2d_fg$color05$s2d_bg$color04"
+bat_color="$s2d_fg$color03$s2d_bg$color02"
 
 bat_signal="^sbat^"
 date_signal="^sdate^"
@@ -33,15 +33,15 @@ disk_signal="^sdisk^"
 mem_signal="^smem^"
 icons_signal="^sicons^"
 vol_signal="^svol^"
+light_signal="^slight^"
 
 
 print_others() {
     icons1=""
     icons2=""
-    icons3=""
-    icons4="ﳲ"
-    icons5=""
-    icons6="ﴸ"
+    icons3="ﳲ"
+    icons4=""
+    icons5="ﴸ"
 
     text=" $icons1"
     color=$others_color
@@ -83,6 +83,14 @@ print_time() {
     text=" $icon  $time_text "
     color=$time_color
     printf "%s%s%s" "$date_signal" "$color" "$text"
+}
+
+print_light() {
+    icon=""
+    color=$light_color
+    light_text=$(xbacklight | awk '{printf "%02d", $1}')
+    text=" $icon $light_text% "
+    printf "%s%s%s" "$light_signal" "$color" "$text"
 }
 
 print_vol() {
@@ -128,4 +136,4 @@ print_bat() {
     printf "%s%s%s" "$bat_signal" "$color" "$text"
 }
 
-xsetroot -name "$(print_others)$(print_disk)$(print_mem)$(print_time)$(print_vol)$(print_bat)"
+xsetroot -name "$(print_others)$(print_disk)$(print_mem)$(print_time)$(print_light)$(print_vol)$(print_bat)"
