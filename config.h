@@ -115,7 +115,7 @@ static Key keys[] = {
     { MODKEY,              XK_q,            killclient,       {0} },                     /* super q            |  关闭窗口 */
     { MODKEY|ShiftMask,    XK_F12,            quit,             {0} },                     /* super shift F12      |  退出dwm */
 
-	{ MODKEY,              XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space |  切换到网格布局 */
+	{ MODKEY|ShiftMask,    XK_space,        selectlayout,     {.v = &layouts[1]} },      /* super shift space |  切换到网格布局 */
 	{ MODKEY,              XK_o,            showonlyorall,    {0} },                     /* super o           |  切换 只显示一个窗口 / 全部显示 */
 
     { MODKEY|ControlMask,  XK_equal,        setgap,           {.i = -1} },               /* super ctrl up      |  窗口增大 */
