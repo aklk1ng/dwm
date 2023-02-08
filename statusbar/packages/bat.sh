@@ -20,8 +20,13 @@ notify() {
     _status="状态: $(acpi | sed 's/^Battery 0: //g' | awk -F ',' '{print $1}')"
     _remaining="剩余: $(acpi | sed 's/^Battery 0: //g' | awk -F ',' '{print $2}' | sed 's/^[ ]//g')"
     _time="充满时间: $(acpi | sed 's/^Battery 0: //g' | awk -F ',' '{print $3}' | sed 's/^[ ]//g' | awk '{print $1}')"
-    [ "$_time" = "充满时间: " ] && _time=""
-    notify-send "$bat_icon Battery" "\n$_status\n$_remaining\n$_time" -r 9527
+
+    if [[ ! "$(acpi -b | grep 'Battery 0' | grep Discharging)" ]]; then
+        [ "$_time" = "充满时间: " ] && _time=""
+        notify-send "$bat_icon Battery" "\n$_status\n$_remaining\n$_time" -r 9527
+    else
+        notify-send "$bat_icon Battery" "\n$_status\n$_remaining\n" -r 9527
+    fi
 }
 
 click() {

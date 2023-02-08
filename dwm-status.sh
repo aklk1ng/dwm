@@ -86,6 +86,7 @@ print_time() {
 }
 
 print_light() {
+    [ ! "$(command -v xbacklight)" ] && echo command not found: xbacklight && exit
     icon=""
     color=$light_color
     light_text=$(xbacklight | awk '{printf "%02d", $1}')
@@ -94,6 +95,7 @@ print_light() {
 }
 
 print_vol() {
+    [ ! "$(command -v pamixer)" ] && echo command not found: pamixer && exit
     volunmuted=$(pamixer --get-mute)
     vol_text=$(pamixer --get-volume)
     if [ "$vol_text" == 0 ] || [ "$volunmuted" = "true" ]
@@ -113,6 +115,8 @@ print_vol() {
 }
 
 print_bat() {
+    [ ! "$(command -v acpi)" ] && echo command not found: acpi && exit
+
     bat_text=$(acpi -b | sed 2d | awk '{print $4}' | grep -Eo "[0-9]+")
     [ ! "$bat_text" ] && bat_text=$(acpi -b | sed 2d | awk '{print $5}' | grep -Eo "[0-9]+")
     [ ! "$(acpi -b | grep 'Battery 0' | grep Discharging)" ] && charge_icon=""
