@@ -27,8 +27,8 @@ static const char *colors[][3]           = {
     [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" },
     [SchemeSelGlobal] = { "#ffffff", "#37474F", "#FFC0CB" },
     [SchemeHid] = { "#dddddd", NULL, NULL },
-    [SchemeSystray] = { "#7799AA", "#7799AA", "#7799AA" },
-    [SchemeUnderline] = { "#7799AA", "#7799AA", "#7799AA" },
+    [SchemeSystray] = { NULL, "#7799AA", NULL },
+    [SchemeUnderline] = { "#7799AA", NULL, NULL },
     [SchemeNormTag] = { "#bbbbbb", "#333333", NULL },
     [SchemeSelTag] = { "#eeeeee", "#333333", NULL },
     [SchemeBarEmpty] = { NULL, "#111111", NULL },
@@ -39,8 +39,8 @@ static const unsigned int alphas[][3]    = {
     [SchemeSelGlobal] = { OPAQUE, baralpha, borderalpha },
     [SchemeNormTag] = { OPAQUE, baralpha, borderalpha },
     [SchemeSelTag] = { OPAQUE, baralpha, borderalpha },
-    [SchemeBarEmpty] = { OPAQUE, 0xa0a, borderalpha },
-    [SchemeStatusText] = { OPAQUE, 0x88, 0 },
+    [SchemeBarEmpty] = { NULL, 0xa0a, NULL },
+    [SchemeStatusText] = { OPAQUE, 0x88, NULL },
 };
 
 static const char *statusbarscript = "~/.config/dwm/statusbar/statusbar.sh";
