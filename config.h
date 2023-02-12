@@ -47,7 +47,7 @@ static const char *statusbarscript = "~/.config/dwm/statusbar/statusbar.sh";
 
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "", "﬏" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "", "ﬄ", "﬐", "", "﬏" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   isglobal   isnoborder  monitor */
     {"music",                NULL,                 NULL,             1 << 10,      1,           0,          1,         -1 },
@@ -187,4 +187,6 @@ static Button buttons[] = {
     { ClkClientWin,        MODKEY,          Button1,          movemouse,     {0} },                                   // super+左键  |  拖拽窗口     |  拖拽窗口
     { ClkClientWin,        MODKEY,          Button3,          resizemouse,   {0} },                                   // super+右键  |  拖拽窗口     |  改变窗口大小
     { ClkTagBar,           MODKEY,          Button1,          tag,           {0} },                                   // super+左键  |  点击tag      |  将窗口移动到对应tag
+    { ClkBarEmpty,         0,               Button1,          spawn,         SHCMD("~/.config/dwm/statusbar/packages/others.sh mpc_player") },        // 左键        |  bar空白处
+    /* { ClkBarEmpty,         0,               Button3,          spawn, SHCMD("~/scripts/call_rofi.sh drun") },          // 右键        |  bar空白处    |  rofi 执行 drun */
 };
