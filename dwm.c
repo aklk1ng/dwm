@@ -95,7 +95,7 @@ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
-enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
+enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkBarEmpty,
        ClkClientWin, ClkRootWin, ClkLast }; /* clicks */
 enum { UP, DOWN, LEFT, RIGHT }; /* movewin */
 enum { V_EXPAND, V_REDUCE, H_EXPAND, H_REDUCE }; /* resizewins */
@@ -615,6 +615,7 @@ buttonpress(XEvent *e)
             arg.i = ev->x - (selmon->ww - status_w - 2 * sp - (selmon == systraytomon(selmon) ? (system_w ? system_w + systraypinning + 2 : 0) : 0));
             arg.ui = ev->button; // 1 => L，2 => M，3 => R
         } else {
+            click = ClkBarEmpty;
             x += blw;
             c = m->clients;
 
@@ -2583,20 +2584,6 @@ sigchld(int unused)
         die("can't install SIGCHLD handler:");
     while (0 < waitpid(-1, NULL, WNOHANG));
 }
-
-/* void */
-/* sigstatusbar(const Arg *arg) */
-/* { */
-/* 	union sigval sv; */
-
-/* 	if (!statussig) */
-/* 		return; */
-/* 	sv.sival_int = arg->i; */
-/* 	if ((statuspid = getstatusbarpid()) <= 0) */
-/* 		return; */
-
-/* 	sigqueue(statuspid, SIGRTMIN+statussig, sv); */
-/* } */
 
 void
 spawn(const Arg *arg)
