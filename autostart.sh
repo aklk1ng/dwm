@@ -10,7 +10,7 @@ xfce4-power-manager &
 settings() {
     [ $1 ] && sleep $1
     xset s 600
-    xset r rate 300 50
+    xset r rate 300 65
     syndaemon -i 1 -t -K -R -d
     # ~/scripts/set-screen.sh &
 }
