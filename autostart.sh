@@ -4,7 +4,7 @@ source ~/.profile
 nm-applet &
 xrandr --dpi 192
 mpd ~/.config/mpd/mpd.conf &
-feh --bg-scale ~/wallpaper/solo-leveling.png &
+feh --bg-scale ~/wallpaper/wallhaven-7pjl6y.jpg &
 fcitx5 &
 xfce4-power-manager &
 settings() {
