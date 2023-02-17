@@ -2,7 +2,7 @@
 # ICONS 部分特殊的标记图标 这里是我自己用的，你用不上的话去掉就行
 
 wallpaper() {
-    feh --randomize --bg-fill ~/wallpaper/*.jpg
+    feh --randomize --bg-fill ~/wallpaper/*.png
 }
 
 call_menu() {
