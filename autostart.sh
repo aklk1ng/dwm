@@ -7,16 +7,16 @@ settings() {
     xrandr --dpi 192
     nm-applet &
     xset s 600
-    xset r rate 300 65
+    xset r rate 300 70
     xfce4-power-manager &
     syndaemon -i 1 -t -K -R -d
+    fcitx5 &
     # ~/scripts/set-screen.sh &
 }
 
 daemons() {
     [ $1 ] && sleep $1
     pactl info &
-    fcitx5 &
     flameshot &
     mpd ~/.config/mpd/mpd.conf &
     lemonade server &

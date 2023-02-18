@@ -9,8 +9,6 @@ call_menu() {
     case $(echo -e ' 关机\n 重启\n 锁定' | rofi -dmenu -window-title power -theme ~/scripts/config/rofi.rasi) in
         " 关机") poweroff ;;
         " 重启") reboot ;;
-        # Now i haven't enough swap space for hibernation
-        # " 休眠") sudo systemctl hibernate ;;
         " 锁定") ~/scripts/bluelock.sh ;;
     esac
 }

@@ -10,5 +10,4 @@ mpc_player() {
 
 case "$1" in
     mpc_player) mpc_player ;;
-    # R) notify ;;
 esac
