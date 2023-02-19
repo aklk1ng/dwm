@@ -6,6 +6,7 @@ settings() {
     [ $1 ] && sleep $1
     xrandr --dpi 192
     nm-applet &
+    xset -b
     xset s 600
     xset r rate 300 70
     xfce4-power-manager &
@@ -39,9 +40,6 @@ every1000s() {
     while true
     do
         source ~/.profile
-        xset -b
-        # use keyd instead of xmodmap
-        # xmodmap ~/scripts/config/xmodmap.conf
         sleep 1000
         # [ "$WALLPAPER_MODE" = "PIC" ] && ~/scripts/set-wallpaper.sh &
     done
@@ -60,5 +58,5 @@ cron() {
 settings 1 &
 daemons 2 &
 every1s 1 &
-every1000s 30 &
+# every1000s 30 &
 cron 5 &
