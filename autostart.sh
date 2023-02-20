@@ -6,22 +6,22 @@ settings() {
     [ $1 ] && sleep $1
     xrandr --dpi 192
     nm-applet &
+    fcitx5 &
     xset -b
     xset s 600
     xset r rate 300 70
     xfce4-power-manager &
     syndaemon -i 1 -t -K -R -d
-    fcitx5 &
     # ~/scripts/set-screen.sh &
 }
 
 daemons() {
     [ $1 ] && sleep $1
     pactl info &
-    flameshot &
+    picom --experimental-backends --config ~/scripts/config/picom.conf &
     mpd ~/.config/mpd/mpd.conf &
     lemonade server &
-    picom --experimental-backends --config ~/scripts/config/picom.conf &
+    flameshot &
 }
 
 every1s() {
