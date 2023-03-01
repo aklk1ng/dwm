@@ -37,107 +37,107 @@ light_signal="^slight^"
 
 
 print_others() {
-    icons1=""
-    icons2=""
-    icons3="ﳲ"
-    icons4=""
-    icons5="ﴸ"
+  icons1=""
+  icons2=""
+  icons3="ﳲ"
+  icons4=""
+  icons5="ﴸ"
 
-    text=" $icons1"
-    color=$others_color
-    printf "%s%s%s" "$icons_signal" "$color" "$text "
+  text=" $icons1"
+  color=$others_color
+  printf "%s%s%s" "$icons_signal" "$color" "$text "
 }
 
 print_disk() {
-    disk_icon="﫭"
-    used_rate=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $5}' )
-    text=" $disk_icon $used_rate"
-    color="$disk_color"
-    printf "%s%s%s " "$disk_signal" "$color" "$text"
+  disk_icon="﫭"
+  used_rate=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $5}' )
+  text=" $disk_icon $used_rate"
+  color="$disk_color"
+  printf "%s%s%s " "$disk_signal" "$color" "$text"
 }
 
 print_mem() {
-    cpu_tem=$[$(cat /sys/class/thermal/thermal_zone0/temp)/1000]
-    if [ "$cpu_tem" -ge "60" ]; then
-        cpu_color=$high_tem
-    else
-        cpu_color=$mem_color
-    fi
-    cpu_text="$cpu_tem°"
+  cpu_tem=$[$(cat /sys/class/thermal/thermal_zone0/temp)/1000]
+  if [ "$cpu_tem" -ge "60" ]; then
+      cpu_color=$high_tem
+  else
+      cpu_color=$mem_color
+  fi
+  cpu_text="$cpu_tem°"
 
-    mem_icon=""
-    mem_total=$(cat /proc/meminfo | grep "MemTotal:"| awk '{print $2}')
-    mem_free=$(cat /proc/meminfo | grep "MemFree:"| awk '{print $2}')
-    mem_buffers=$(cat /proc/meminfo | grep "Buffers:"| awk '{print $2}')
-    mem_cached=$(cat /proc/meminfo | grep -w "Cached:"| awk '{print $2}')
-    men_usage_rate=$(((mem_total - mem_free - mem_buffers - mem_cached) * 100 / mem_total))
-    mem_text=$(echo $men_usage_rate | awk '{printf "%02d%", $1}')
+  mem_icon=""
+  mem_total=$(cat /proc/meminfo | grep "MemTotal:"| awk '{print $2}')
+  mem_free=$(cat /proc/meminfo | grep "MemFree:"| awk '{print $2}')
+  mem_buffers=$(cat /proc/meminfo | grep "Buffers:"| awk '{print $2}')
+  mem_cached=$(cat /proc/meminfo | grep -w "Cached:"| awk '{print $2}')
+  men_usage_rate=$(((mem_total - mem_free - mem_buffers - mem_cached) * 100 / mem_total))
+  mem_text=$(echo $men_usage_rate | awk '{printf "%02d%", $1}')
 
-    mem_text=" $mem_icon $mem_text "
-    printf "%s%s%s%s%s " "$mem_signal" "$mem_color" "$mem_text" "$cpu_color" "$cpu_text"
+  mem_text=" $mem_icon $mem_text "
+  printf "%s%s%s%s%s " "$mem_signal" "$mem_color" "$mem_text" "$cpu_color" "$cpu_text"
 }
 
 print_time() {
-    icon=""
-    time_text="$(date '+%m/%d %H:%M:%S')"
-    text=" $icon  $time_text "
-    color=$time_color
-    printf "%s%s%s" "$date_signal" "$color" "$text"
+  icon=""
+  time_text="$(date '+%m/%d %H:%M:%S')"
+  text=" $icon  $time_text "
+  color=$time_color
+  printf "%s%s%s" "$date_signal" "$color" "$text"
 }
 
 print_light() {
-    [ ! "$(command -v xbacklight)" ] && echo command not found: xbacklight && exit
-    icon=""
-    color=$light_color
-    light_text=$(xbacklight | awk '{printf "%02d", $1}')
-    text=" $icon $light_text% "
-    printf "%s%s%s" "$light_signal" "$color" "$text"
+  [ ! "$(command -v xbacklight)" ] && echo command not found: xbacklight && exit
+  icon=""
+  color=$light_color
+  light_text=$(xbacklight | awk '{printf "%02d", $1}')
+  text=" $icon $light_text% "
+  printf "%s%s%s" "$light_signal" "$color" "$text"
 }
 
 print_vol() {
-    [ ! "$(command -v pamixer)" ] && echo command not found: pamixer && exit
-    volunmuted=$(pamixer --get-mute)
-    vol_text=$(pamixer --get-volume)
-    if [ "$vol_text" == 0 ] || [ "$volunmuted" = "true" ]
-    then
-        vol_text="--"
-        vol_icon="婢"
-    elif [ "$vol_text" -lt 10 ]; then vol_icon="奄"; vol_text=0$vol_text;
-    elif [ "$vol_text" -le 20 ]; then vol_icon="奄";
-    elif [ "$vol_text" -le 60 ]; then vol_icon="奔";
-    else vol_icon="墳"; fi
+  [ ! "$(command -v pamixer)" ] && echo command not found: pamixer && exit
+  volunmuted=$(pamixer --get-mute)
+  vol_text=$(pamixer --get-volume)
+  if [ "$vol_text" == 0 ] || [ "$volunmuted" = "true" ]
+  then
+    vol_text="--"
+    vol_icon="婢"
+  elif [ "$vol_text" -lt 10 ]; then vol_icon="奄"; vol_text=0$vol_text;
+  elif [ "$vol_text" -le 20 ]; then vol_icon="奄";
+  elif [ "$vol_text" -le 60 ]; then vol_icon="奔";
+  else vol_icon="墳"; fi
 
-    vol_text=$vol_text%
+  vol_text=$vol_text%
 
-    text=" $vol_icon $vol_text "
-    color=$vol_color
-    printf "%s%s%s" "$vol_signal" "$color" "$text"
+  text=" $vol_icon $vol_text "
+  color=$vol_color
+  printf "%s%s%s" "$vol_signal" "$color" "$text"
 }
 
 print_bat() {
-    [ ! "$(command -v acpi)" ] && echo command not found: acpi && exit
+  [ ! "$(command -v acpi)" ] && echo command not found: acpi && exit
 
-    bat_text=$(acpi -b | sed 2d | awk '{print $4}' | grep -Eo "[0-9]+")
-    [ ! "$bat_text" ] && bat_text=$(acpi -b | sed 2d | awk '{print $5}' | grep -Eo "[0-9]+")
-    [ ! "$(acpi -b | grep 'Battery 0' | grep Discharging)" ] && charge_icon=""
-    if  [ "$bat_text" -ge 95 ]; then charge_icon=""; bat_icon="";
-    elif [ "$bat_text" -ge 90 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 80 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 70 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 60 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 50 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 40 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 30 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 20 ]; then bat_icon="";
-    elif [ "$bat_text" -ge 10 ]; then bat_icon="";
-    else bat_icon=""; fi
+  bat_text=$(acpi -b | sed 2d | awk '{print $4}' | grep -Eo "[0-9]+")
+  [ ! "$bat_text" ] && bat_text=$(acpi -b | sed 2d | awk '{print $5}' | grep -Eo "[0-9]+")
+  [ ! "$(acpi -b | grep 'Battery 0' | grep Discharging)" ] && charge_icon=""
+  if  [ "$bat_text" -ge 95 ]; then charge_icon=""; bat_icon="";
+  elif [ "$bat_text" -ge 90 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 80 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 70 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 60 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 50 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 40 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 30 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 20 ]; then bat_icon="";
+  elif [ "$bat_text" -ge 10 ]; then bat_icon="";
+  else bat_icon=""; fi
 
-    bat_text=$bat_text%
-    bat_icon=$charge_icon$bat_icon
+  bat_text=$bat_text%
+  bat_icon=$charge_icon$bat_icon
 
-    text=" $bat_icon $bat_text "
-    color=$bat_color
-    printf "%s%s%s" "$bat_signal" "$color" "$text"
+  text=" $bat_icon $bat_text "
+  color=$bat_color
+  printf "%s%s%s" "$bat_signal" "$color" "$text"
 }
 
 xsetroot -name "$(print_others)$(print_disk)$(print_mem)$(print_time)$(print_light)$(print_vol)$(print_bat)"
