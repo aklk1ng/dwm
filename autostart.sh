@@ -1,15 +1,13 @@
 #! /bin/bash
 
 source ~/.profile
-feh --randomize --bg-fill ~/wallpaper/*.png &
 settings() {
-  [ $1 ] && sleep $1
+  feh --randomize --bg-fill ~/wallpaper/*.png &
   xrandr --dpi 192
   nm-applet &
   fcitx5 &
   xset -b
-  xset s 600
-  xset r rate 300 70
+  xset r rate 300 80
   xfce4-power-manager &
   syndaemon -i 1 -t -K -R -d
   # ~/scripts/set-screen.sh &
@@ -55,7 +53,7 @@ cron() {
   done
 }
 
-settings 1 &
+settings &
 daemons 2 &
 every1s 1 &
 # every1000s 30 &
