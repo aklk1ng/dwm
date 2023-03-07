@@ -1,25 +1,20 @@
 #! /bin/bash
 
 source ~/.profile
+xset r rate 300 100
 settings() {
   feh --randomize --bg-fill ~/wallpaper/*.png &
   xrandr --dpi 192
   nm-applet &
   fcitx5 &
-  xset -b
-  xset r rate 300 80
   xfce4-power-manager &
   syndaemon -i 1 -t -K -R -d
-  # ~/scripts/set-screen.sh &
-}
-
-daemons() {
-  [ $1 ] && sleep $1
   pactl info &
   picom --experimental-backends --config ~/scripts/config/picom.conf &
   mpd ~/.config/mpd/mpd.conf &
   lemonade server &
   flameshot &
+  # ~/scripts/set-screen.sh &
 }
 
 every1s() {
@@ -54,7 +49,6 @@ cron() {
 }
 
 settings &
-daemons 2 &
 every1s 1 &
 # every1000s 30 &
 cron 5 &

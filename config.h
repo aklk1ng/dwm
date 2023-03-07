@@ -159,7 +159,7 @@ static Key keys[] = {
     /* 若跳转后的tag无窗口且附加了cmd1或者cmd2就执行对应的cmd */
     /* key tag cmd1 cmd2 */
     TAGKEYS(XK_1, 0,  0,  0)
-    TAGKEYS(XK_2, 1,  "st -e bash ~/scripts/start-clash.sh &",  "st -e bash ~/scripts/start-clash.sh &")
+    TAGKEYS(XK_2, 1,  "kitty -e bash ~/scripts/start-clash.sh &",  "kitty -e bash ~/scripts/start-clash.sh &")
     TAGKEYS(XK_3, 2,  0,  0)
     TAGKEYS(XK_4, 3,  0,  0)
     TAGKEYS(XK_5, 4,  0,  0)
@@ -168,7 +168,7 @@ static Key keys[] = {
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
     TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
-    TAGKEYS(XK_m, 10, "st -A 0.7 -t music -c GN -e ncmpcpp &", "st -A 0.7 -t music -c GN -e ncmpcpp &")
+    TAGKEYS(XK_m, 10, "st -A 0.7 -c GN -e ncmpcpp &", "st -A 0.7 -c GN -e ncmpcpp &")
     TAGKEYS(XK_0, 11, "/opt/QQ/qq", "/opt/QQ/qq")
     TAGKEYS(XK_w, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
     TAGKEYS(XK_l, 13, "/usr/bin/wemeet", "/usr/bin/wemeet")
