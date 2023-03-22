@@ -142,10 +142,10 @@ static Key keys[] = {
     { MODKEY,                   XK_F9,                  spawn,            SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle ") },   /*禁音*/ /*解除禁音*/
     { MODKEY,                   XK_F10,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -1% ") },   /*减小音量*/
     { MODKEY,                   XK_F11,                 spawn,            SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +1% ") },   /*增大音量*/
-    { MODKEY,              XK_Return, spawn, SHCMD("kitty") },                                                     /* super enter      | 打开kitty终端             */
-    { MODKEY,              XK_s,      spawn, SHCMD("st -c float") },                                                /* super s          | 打开浮动st终端         */
-    { MODKEY,              XK_g,      spawn, SHCMD("st -c global") },                                                /* super g          | 打开全局st终端         */
-    { MODKEY|ShiftMask,    XK_g,      spawn, SHCMD("st -c FN") },                                                /* super g          | 打开全局st终端         */
+    { MODKEY,              XK_Return, spawn, SHCMD("kitty -e proxy-clash") },                                                     /* super enter      | 打开kitty终端             */
+    { MODKEY,              XK_s,      spawn, SHCMD("st -c float -e proxy-clash") },                                                /* super s          | 打开浮动st终端         */
+    { MODKEY,              XK_g,      spawn, SHCMD("st -c global -e proxy-clash") },                                                /* super g          | 打开全局st终端         */
+    { MODKEY|ShiftMask,    XK_g,      spawn, SHCMD("st -c FN -e proxy-clash") },                                                /* super g          | 打开全局st终端         */
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme nord -show drun -show-icons") },                /* super d          | rofi: 执行命令         */
     { MODKEY,              XK_p,      spawn, SHCMD("rofi -show menu -modi 'menu:~/scripts/rofi.sh'") },        /* super p          | rofi: 执行命令         */
     { MODKEY,              XK_F1,     spawn, SHCMD("pcmanfm") },                                                /* super F1         | 文件管理器             */
