@@ -50,5 +50,4 @@ cron() {
 
 settings &
 every1s 1 &
-# every1000s 30 &
 cron 5 &
