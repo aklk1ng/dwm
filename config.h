@@ -21,11 +21,11 @@ static const int   nmaster               = 1;         /* 主工作区 窗口数�
 static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "JetBrains Mono NL Nerd Font:style=regular:size=12.5", "monospace:size=13" };
+static const char *fonts[]               = { "JetBrains Mono Nerd Font:style=regular:size=12.5", "monospace:size=13" };
 static const char *colors[][3]           = {
     [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" },
     [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" },
-    [SchemeSelGlobal] = { "#ffffff", "#37474F", "#FFC0CB" },
+    [SchemeSelGlobal] = { "#ffffff", "#37474F", "#FF7FA8" },
     [SchemeHid] = { "#dddddd", NULL, NULL },
     [SchemeSystray] = { NULL, "#7799AA", NULL },
     [SchemeUnderline] = { "#7799AA", NULL, NULL },
