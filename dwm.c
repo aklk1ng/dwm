@@ -1052,9 +1052,9 @@ void drawbar(Monitor *m) {
   }
 
   // 绘制模式图标
-  w = TEXTW(overviewlayout.symbol);
-  drw_setscheme(drw, scheme[SchemeNorm]);
-  x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+  // w = TEXTW(overviewlayout.symbol);
+  // drw_setscheme(drw, scheme[SchemeNorm]);
+  // x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
   // 绘制TASKS
   for (c = m->clients; c; c = c->next) {

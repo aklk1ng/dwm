@@ -49,7 +49,7 @@ print_others() {
 }
 
 print_disk() {
-  disk_icon="﫭"
+  disk_icon="󰋊"
   used_rate=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $5}' )
   text=" $disk_icon $used_rate"
   color="$disk_color"
@@ -65,7 +65,7 @@ print_mem() {
   fi
   cpu_text="$cpu_tem°"
 
-  mem_icon=""
+  mem_icon="󰍛"
   mem_total=$(cat /proc/meminfo | grep "MemTotal:"| awk '{print $2}')
   mem_free=$(cat /proc/meminfo | grep "MemFree:"| awk '{print $2}')
   mem_buffers=$(cat /proc/meminfo | grep "Buffers:"| awk '{print $2}')
@@ -101,11 +101,9 @@ print_vol() {
   if [ "$vol_text" == 0 ] || [ "$volunmuted" = "true" ]
   then
     vol_text="--"
-    vol_icon="婢"
-  elif [ "$vol_text" -lt 10 ]; then vol_icon="奄"; vol_text=0$vol_text;
-  elif [ "$vol_text" -le 20 ]; then vol_icon="奄";
-  elif [ "$vol_text" -le 60 ]; then vol_icon="奔";
-  else vol_icon="墳"; fi
+    vol_icon="󰖁"
+  elif [ "$vol_text" -lt 10 ]; then vol_icon=""; vol_text=0$vol_text;
+  else vol_icon=""; fi
 
   vol_text=$vol_text%
 
@@ -120,20 +118,10 @@ print_bat() {
   bat_text=$(acpi -b | sed 2d | awk '{print $4}' | grep -Eo "[0-9]+")
   [ ! "$bat_text" ] && bat_text=$(acpi -b | sed 2d | awk '{print $5}' | grep -Eo "[0-9]+")
   [ ! "$(acpi -b | grep 'Battery 0' | grep Discharging)" ] && charge_icon=""
-  if  [ "$bat_text" -ge 95 ]; then charge_icon=""; bat_icon="";
-  elif [ "$bat_text" -ge 90 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 80 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 70 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 60 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 50 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 40 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 30 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 20 ]; then bat_icon="";
-  elif [ "$bat_text" -ge 10 ]; then bat_icon="";
-  else bat_icon=""; fi
+  bat_icon="󰁹"
 
   bat_text=$bat_text%
-  bat_icon=$charge_icon$bat_icon
+  bat_icon=$bat_icon$charge_icon
 
   text=" $bat_icon $bat_text "
   color=$bat_color
