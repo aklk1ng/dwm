@@ -21,7 +21,7 @@ static const int   nmaster               = 1;         /* 主工作区 窗口数�
 static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=regular:size=12.5", "monospace:size=13" };
+static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=regular:size=12", "monospace:size=13" };
 static const char *colors[][3]           = {
     [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" },
     [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" },
@@ -47,11 +47,11 @@ static const char *statusbarscript = "~/.config/dwm/statusbar/statusbar.sh";
 
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "", "󰝚", "ﬄ", "", "", "󰨞" };
+static const char *tags[] = { "", "", "󰎬", "󰎮", "󰎰", "󰎵", "󰎸", "󰎻", "󰎾", "", "󰝚", "", "", "󱜸", "󰨞" };
 static const Rule rules[] = {
     /* class                 instance              title             tags mask     isfloating   isglobal   isnoborder  monitor */
     {"music",                NULL,                 NULL,             1 << 10,      1,           0,          1,         -1 },
-    { NULL,                 "wechat.exe",          NULL,             1 << 12,      0,           0,          0,         -1 },
+    { NULL,                 "wechat.exe",          NULL,             1 << 11,      0,           0,          0,         -1 },
     { NULL,                  NULL,                "broken",          0,            1,           0,          0,         -1 },
     { NULL,                  NULL,                "图片查看",        0,            1,           0,          0,         -1 },
     { NULL,                  NULL,                "图片预览",        0,            1,           0,          0,         -1 },
@@ -169,8 +169,8 @@ static Key keys[] = {
     TAGKEYS(XK_9, 8,  0,  0)
     TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
     TAGKEYS(XK_m, 10, "st -A 0.7 -e ncmpcpp &", "st -A 0.7 -e ncmpcpp &")
-    TAGKEYS(XK_0, 11, "/opt/QQ/qq", "/opt/QQ/qq")
-    TAGKEYS(XK_w, 12, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
+    TAGKEYS(XK_w, 11, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
+    TAGKEYS(XK_0, 12, "/opt/QQ/qq", "/opt/QQ/qq")
     TAGKEYS(XK_l, 13, "/usr/bin/wemeet", "/usr/bin/wemeet")
     TAGKEYS(XK_v, 14, "/opt/visual-studio-code/bin/code", "/opt/visual-studio-code/bin/code")
 };
