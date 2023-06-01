@@ -120,7 +120,6 @@ enum {
 }; /* default atoms */
 enum {
   ClkTagBar,
-  ClkLtSymbol,
   ClkStatusText,
   ClkWinTitle,
   ClkBarEmpty,
@@ -635,12 +634,8 @@ void buttonpress(XEvent *e) {
     if (i < LENGTH(tags)) {
       click = ClkTagBar;
       arg.ui = 1 << i;
-    } else if (ev->x < x + blw)
-      click = ClkLtSymbol;
-    else if (ev->x > selmon->ww - status_w - 2 * sp -
-                         (selmon == systraytomon(selmon)
-                              ? (system_w ? system_w + systraypinning + 2 : 0)
-                              : 0)) {
+    } else if (ev->x > selmon->ww - status_w - 2 * sp -
+        (selmon == systraytomon(selmon) ? (system_w ? system_w + systraypinning + 2 : 0) : 0)) {
       click = ClkStatusText;
       arg.i = ev->x - (selmon->ww - status_w - 2 * sp -
                        (selmon == systraytomon(selmon)
