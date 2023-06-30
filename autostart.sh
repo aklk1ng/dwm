@@ -1,6 +1,7 @@
 #! /bin/bash
 
 source ~/.profile
+# increase-keyboard-key-repeat-rate
 xset r rate 300 100
 settings() {
   feh --randomize --bg-fill ~/wallpaper/*.png &
