@@ -8,7 +8,7 @@ notify() {
 
 click() {
     case "$1" in
-        L) notify ;;
+        # L) notify ;;
         U) xbacklight -inc 1; notify ;;
         D) xbacklight -dec 1; notify ;;
     esac

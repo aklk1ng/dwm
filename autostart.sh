@@ -2,7 +2,7 @@
 
 source ~/.profile
 # increase-keyboard-key-repeat-rate
-xset r rate 300 100
+xset r rate 300 110
 settings() {
   feh --randomize --bg-fill ~/wallpaper/*.png &
   xrandr --dpi 192
