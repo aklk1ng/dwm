@@ -2,7 +2,6 @@
 
 source ~/.profile
 # increase-keyboard-key-repeat-rate
-xset r rate 300 110
 settings() {
   feh --randomize --bg-fill ~/wallpaper/*.png &
   xrandr --dpi 192
@@ -25,6 +24,7 @@ every1s() {
     $DWM/statusbar/statusbar.sh &
     $DWM/dwm-status.sh &
     ~/scripts/proxy.sh &
+    xset r rate 300 110
     sleep 1
   done
 }
