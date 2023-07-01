@@ -50,7 +50,7 @@ print_others() {
 
 print_disk() {
   disk_icon="󰋊"
-  used_rate=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $5}' )
+  used_rate=$( df -h | grep '/dev/nvme0n1p8' | awk '{print $5}' )
   text=" $disk_icon $used_rate"
   color="$disk_color"
   printf "%s%s%s " "$disk_signal" "$color" "$text"

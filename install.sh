@@ -15,8 +15,8 @@ clash() {
 
 clash
 
-proxychains yay -S i3lock-color keyd wqy-microhei cava
+#proxychains yay -S i3lock-color keyd wqy-microhei cava
 sudo pacman -S xdotool pavucontrol xfce4-power-manager imagemagick network-manager-applet xorg-xsetroot xclip tmux pcmanfm flameshot pamixer acpi light xorg-xbacklight dunst libnotify rofi feh i3lock mpd mpc ncmpcpp pactl python nodejs yarn fzf ripgrep
 pip install pynvim
-brew install stow cal
+#brew install stow cal
 npm install -g neovim

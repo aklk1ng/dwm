@@ -2,8 +2,8 @@
 # DISK
 
 notify() {
-    free_result=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $4}' )
-    used_result=$( df -h | grep '/dev/nvme0n1p7' | awk '{print $3}' )
+    free_result=$( df -h | grep '/dev/nvme0n1p8' | awk '{print $4}' )
+    used_result=$( df -h | grep '/dev/nvme0n1p8' | awk '{print $3}' )
     text="
 可用:\t $(echo "$free_result")
 用量:\t $(echo "$used_result")
