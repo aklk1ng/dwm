@@ -149,7 +149,7 @@ static Key keys[] = {
     { MODKEY,              XK_d,      spawn, SHCMD("rofi -theme nord -show drun -show-icons") },                /* super d          | rofi: 执行命令         */
     { MODKEY,              XK_p,      spawn, SHCMD("rofi -show menu -modi 'menu:~/scripts/rofi.sh'") },        /* super p          | rofi: 执行命令         */
     { MODKEY,              XK_F1,     spawn, SHCMD("pcmanfm") },                                                /* super F1         | 文件管理器             */
-    { MODKEY,              XK_b,      spawn, SHCMD("~/scripts/bluelock.sh") },                                  /* super k          | 锁定屏幕               */
+    { MODKEY,              XK_k,      spawn, SHCMD("~/scripts/bluelock.sh") },                                  /* super k          | 锁定屏幕               */
     { MODKEY|ShiftMask,    XK_a,      spawn, SHCMD("flameshot gui -p ~/Pictures/screenshots") },             /* super shift a    | 截图                   */
     /* { MODKEY|ControlMask,    XK_q,      spawn, SHCMD("kill -9 $(xprop | grep _NET_WM_PID | awk '{print $3}')") }, /1* super shift q    | 选中某个窗口并强制kill *1/ */
     { ShiftMask|ControlMask, XK_c,    spawn, SHCMD("xclip -o | xclip -selection c") },                          /* super shift c    | 进阶复制               */
