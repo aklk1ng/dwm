@@ -11,7 +11,7 @@ settings() {
   syndaemon -i 1 -t -K -R -d
   pactl info &
   picom --experimental-backends --config ~/scripts/config/picom.conf &
-  mpd ~/.config/mpd/mpd.conf &
+  systemctl start mpd.service --user
   lemonade server &
   flameshot &
   # ~/scripts/set-screen.sh &
