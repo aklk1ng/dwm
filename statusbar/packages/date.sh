@@ -2,13 +2,13 @@
 # DATE 获取日期和时间的脚本
 
 notify() {
-    _cal=$(cal --color=always)
-    notify-send "  Calendar" "\n$_cal\n————————————————————" -r 9527
+    _cal=$(cal)
+    notify-send "$_cal——————————————" -r 9527
 }
 
 click() {
     case "$1" in
-    # L) notify ;;
+    L) notify ;;
     esac
 }
 
