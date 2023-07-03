@@ -1,7 +1,6 @@
 #! /bin/bash
 
 source ~/.profile
-# increase-keyboard-key-repeat-rate
 settings() {
   feh --randomize --bg-fill ~/wallpaper/*.png &
   xrandr --dpi 192
@@ -24,6 +23,7 @@ every1s() {
     $DWM/statusbar/statusbar.sh &
     $DWM/dwm-status.sh &
     ~/scripts/proxy.sh &
+    # increase-keyboard-key-repeat-rate
     xset r rate 300 110
     sleep 1
   done
@@ -35,7 +35,6 @@ every1000s() {
   do
     source ~/.profile
     sleep 1000
-    # [ "$WALLPAPER_MODE" = "PIC" ] && ~/scripts/set-wallpaper.sh &
   done
 }
 
