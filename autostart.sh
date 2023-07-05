@@ -1,5 +1,4 @@
 #! /bin/bash
-
 source ~/.profile
 settings() {
   feh --randomize --bg-fill ~/wallpaper/*.png &
@@ -24,7 +23,7 @@ every1s() {
     $DWM/dwm-status.sh &
     ~/scripts/proxy.sh &
     # increase-keyboard-key-repeat-rate
-    xset r rate 300 110
+    xset r rate 300 180
     sleep 1
   done
 }
