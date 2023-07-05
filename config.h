@@ -6,8 +6,8 @@ static const unsigned int borderpx       = 2;         /* 窗口边框大小 */
 static const unsigned int systraypinning = 1;         /* 托盘跟随的显示器 0代表不指定显示器 */
 static const unsigned int systrayspacing = 1;         /* 托盘间距 */
 static const unsigned int systrayspadding = 15;       /* 托盘和状态栏的间隙 */
-static int gappi                         = 10;        /* 窗口与窗口 缝隙大小 */
-static int gappo                         = 10;        /* 窗口与边缘 缝隙大小 */
+static int gappi                         = 8;        /* 窗口与窗口 缝隙大小 */
+static int gappo                         = 8;        /* 窗口与边缘 缝隙大小 */
 static const int _gappo                  = 12;        /* 窗口与窗口 缝隙大小 不可变 用于恢复时的默认值 */
 static const int _gappi                  = 12;        /* 窗口与边缘 缝隙大小 不可变 用于恢复时的默认值 */
 static const int vertpad                 = 5;         /* vertical padding of bar */
@@ -21,7 +21,7 @@ static const int   nmaster               = 1;         /* 主工作区 窗口数�
 static const unsigned int snap           = 10;        /* 边缘依附宽度 */
 static const unsigned int baralpha       = 0xc0;      /* 状态栏透明度 */
 static const unsigned int borderalpha    = 0xdd;      /* 边框透明度 */
-static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=regular:size=10.5", "monospace:size=12" };
+static const char *fonts[]               = { "JetBrainsMono Nerd Font:style=regular:size=10", "monospace:size=12" };
 static const char *colors[][3]           = {
     [SchemeNorm] = { "#bbbbbb", "#333333", "#444444" },
     [SchemeSel] = { "#ffffff", "#37474F", "#42A5F5" },
