@@ -2,7 +2,7 @@
 source ~/.profile
 settings() {
   feh --randomize --bg-fill ~/wallpaper/*.png &
-  xrandr --dpi 192
+  # xrandr --dpi 192
   nm-applet &
   fcitx5 &
   xfce4-power-manager &
