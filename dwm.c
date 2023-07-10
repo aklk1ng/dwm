@@ -122,7 +122,6 @@ enum {
   ClkTagBar,
   ClkStatusText,
   ClkWinTitle,
-  ClkBarEmpty,
   ClkClientWin,
   ClkRootWin,
   ClkLast
@@ -643,7 +642,6 @@ void buttonpress(XEvent *e) {
                             : 0));
       arg.ui = ev->button; // 1 => L，2 => M，3 => R
     } else {
-      click = ClkBarEmpty;
       x += blw;
       c = m->clients;
 

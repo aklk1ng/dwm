@@ -188,5 +188,4 @@ static Button buttons[] = {
     { ClkClientWin,        MODKEY,          Button1,          movemouse,       {0} },                                   // super+左键  |  拖拽窗口     |  拖拽窗口
     { ClkClientWin,        MODKEY,          Button3,          resizemouse,     {0} },                                   // super+右键  |  拖拽窗口     |  改变窗口大小
     { ClkTagBar,           MODKEY,          Button1,          tag,             {0} },                                   // super+左键  |  点击tag      |  将窗口移动到对应tag
-    { ClkBarEmpty,         0,               Button1,          spawn,           SHCMD("~/.config/dwm/statusbar/packages/others.sh mpc_player") },        // 左键        |  bar空白处
 };
