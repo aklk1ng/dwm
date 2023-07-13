@@ -1,7 +1,7 @@
 #! /bin/bash
 source ~/.profile
 settings() {
-  feh --randomize --bg-fill ~/wallpaper/*.png &
+  feh --randomize --bg-fill ~/wallpaper/bg/*.png &
   # xrandr --dpi 192
   nm-applet &
   fcitx5 &
@@ -41,7 +41,7 @@ cron() {
   [ $1 ] && sleep $1
   let i=5
   while true; do
-    [ $((i % 300)) -eq 0 ] && feh --randomize --bg-fill ~/wallpaper/*.png
+    [ $((i % 300)) -eq 0 ] && feh --randomize --bg-fill ~/wallpaper/bg/*.png
     sleep 10;
     let i+=5
   done
