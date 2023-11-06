@@ -168,7 +168,7 @@ static Key keys[] = {
     TAGKEYS(XK_8, 7,  0,  0)
     TAGKEYS(XK_9, 8,  0,  0)
     TAGKEYS(XK_c, 9,  "google-chrome-stable", "google-chrome-stable")
-    TAGKEYS(XK_m, 10, "st -A 0.7 -e ncmpcpp &", "st -A 0.7 -e ncmpcpp &")
+    TAGKEYS(XK_m, 10, "kitty ncmpcpp", "kitty ncmpcpp")
     TAGKEYS(XK_w, 11, "/opt/apps/com.qq.weixin.deepin/files/run.sh", "/opt/apps/com.qq.weixin.deepin/files/run.sh")
     TAGKEYS(XK_0, 12, "/opt/QQ/qq", "/opt/QQ/qq")
     TAGKEYS(XK_l, 13, "/usr/bin/wemeet", "/usr/bin/wemeet")
